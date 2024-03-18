@@ -12,10 +12,12 @@ export default function NewGoal({ onAddGoal }: NewGoalProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    onAddGoal({
-      title: goal.current!.value,
-      description: summary.current!.value
-    })
+    if (goal?.current?.value) {
+      onAddGoal({
+        title: goal.current!.value,
+        description: summary.current!.value
+      })
+    }
 
     event.currentTarget.reset()
   }
