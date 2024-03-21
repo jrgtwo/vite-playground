@@ -1,5 +1,5 @@
 import CourseGoal from "./CourseGoal"
-import { type CourseGoal as CourseGoalProps } from "../App"
+import { type CourseGoal as CourseGoalProps } from "./GoalsList"
 
 type CourseGoalListProps = {
   goals: CourseGoalProps[]
