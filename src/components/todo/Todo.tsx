@@ -1,4 +1,4 @@
-import { Dispatch } from "react"
+import type { Dispatch } from "react"
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { TodoInput } from './TodoInput'

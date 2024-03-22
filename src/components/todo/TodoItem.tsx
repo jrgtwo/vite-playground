@@ -5,8 +5,8 @@ const TodoItemComponent = ({ title, completed }: _TodoItem) => {
     <>
       <li>
         <input type="text" value={title} />
-        <label htmlFor="deleteTodo">Delete</label>
-        <input name="deleteTodo" type="checkbox" checked={completed} />
+        <label htmlFor="completedTodo">Completed</label>
+        <input name="completedTodo" type="checkbox" checked={completed} />
         <button>Edit</button>
       </li>
     </>

@@ -1,12 +1,12 @@
 import { useCallback } from "react"
-import { StateArgs } from "./Todo"
+import type { StateArgs } from "./Todo"
 
 const TodoInputComponent = ({ state, updateState }: StateArgs) => {
 
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    const title = event.currentTarget.todo.value
+    const todoInput = event.currentTarget.todo
+    const title = todoInput.value
     if (title.length === 0) {
       return
     }
@@ -16,7 +16,7 @@ const TodoInputComponent = ({ state, updateState }: StateArgs) => {
       completed: false
     }]
     updateState?.(arr)
-
+    todoInput.value = ''
   }, [state, updateState]);
 
   return (
