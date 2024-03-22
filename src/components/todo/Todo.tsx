@@ -11,9 +11,11 @@ export type StateArgs = {
 }
 export type TodoItem = {
   title: string,
-  completed: boolean
+  completed: boolean,
+  id: number
 }
 export type TodoStore = TodoItem[]
+
 const todoStore: TodoStore = []
 
 const TodoComponent = () => {
@@ -24,7 +26,7 @@ const TodoComponent = () => {
     <>
       <Header />
       <TodoInput state={todoState} updateState={setTodoState} />
-      <TodoList state={todoState} />
+      <TodoList state={todoState} updateState={setTodoState} />
       <Footer />
     </>
   )

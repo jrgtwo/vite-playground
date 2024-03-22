@@ -5,18 +5,22 @@ const TodoInputComponent = ({ state, updateState }: StateArgs) => {
 
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+
     const todoInput = event.currentTarget.todo
     const title = todoInput.value
-    if (title.length === 0) {
-      return
-    }
 
-    const arr = [...state, {
+    if (title.length === 0) return
+
+    const newTodoItem = {
       title: title,
-      completed: false
-    }]
-    updateState?.(arr)
+      completed: false,
+      id: state[state.length - 1]?.id + 1 || 0
+    }
+    const newState = [...state, newTodoItem]
+    updateState?.(newState)
+
     todoInput.value = ''
+
   }, [state, updateState]);
 
   return (
