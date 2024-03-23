@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import type { TodoItem as _TodoItem, StateArgs } from "./Todo"
+import type { TodoItem as _TodoItem, StateArgs, TodoItem } from "./Todo"
 
 const TodoItemComponent = ({
   state,
@@ -17,12 +17,25 @@ const TodoItemComponent = ({
 
   }, [id, state, updateState])
 
+  const handleComplete = useCallback((event: React.FormEvent) => {
+    const target = event.target as HTMLInputElement
+    const isChecked = target.checked
+
+    const idx = state.findIndex((todo: TodoItem) => {
+      return todo.id === id
+    })
+    const newState = [...state]
+    newState[idx].completed = isChecked
+    updateState?.(newState)
+
+  }, [id, state, updateState])
+
   return (
     <>
       <li>
         <input type="text" value={title} />
         <label htmlFor="completedTodo">Completed</label>
-        <input name="completedTodo" type="checkbox" checked={completed} />
+        <input name="completedTodo" type="checkbox" checked={completed} onChange={handleComplete} />
         <button>Edit</button>
         <button onClick={handleDelete}>Delete</button>
       </li>
