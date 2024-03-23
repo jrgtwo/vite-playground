@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import type { TodoItem as _TodoItem, StateArgs, TodoItem } from "./Todo"
+import type { TodoItem as _TodoItem, StateArgs } from "./Todo"
 
 const TodoItemComponent = ({
   state,
@@ -21,7 +21,7 @@ const TodoItemComponent = ({
     const target = event.target as HTMLInputElement
     const isChecked = target.checked
 
-    const idx = state.findIndex((todo: TodoItem) => {
+    const idx = state.findIndex((todo: _TodoItem) => {
       return todo.id === id
     })
     const newState = [...state]
