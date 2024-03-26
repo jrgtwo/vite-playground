@@ -1,9 +1,9 @@
 import { useCallback } from "react"
-import type { TodoItem as _TodoItem, StateArgs } from "./Todo"
+import type { TodoItem as _TodoItem, StateArgs } from "./types"
 
 const TodoItemComponent = ({
-  state,
-  updateState,
+  model,
+  setModel,
   title,
   completed,
   id
@@ -12,23 +12,19 @@ const TodoItemComponent = ({
   const handleDelete = useCallback((event: React.FormEvent) => {
     event.preventDefault()
 
-    const newState = state.filter((todo: _TodoItem) => todo.id !== id)
-    updateState?.(newState)
+    model.remove({ id })
+    setModel(model)
 
-  }, [id, state, updateState])
+  }, [id, model, setModel])
 
   const handleComplete = useCallback((event: React.FormEvent) => {
     const target = event.target as HTMLInputElement
     const isChecked = target.checked
 
-    const idx = state.findIndex((todo: _TodoItem) => {
-      return todo.id === id
-    })
-    const newState = [...state]
-    newState[idx].completed = isChecked
-    updateState?.(newState)
+    model.update({ id, completed: isChecked, title })
+    setModel(model)
 
-  }, [id, state, updateState])
+  }, [id, title, model, setModel])
 
   return (
     <>

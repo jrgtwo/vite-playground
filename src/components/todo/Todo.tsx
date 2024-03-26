@@ -1,32 +1,25 @@
-import type { Dispatch } from "react"
 import { Header } from './Header'
 import { Footer } from './Footer'
 import { TodoInput } from './TodoInput'
 import { TodoList } from './TodoList'
 import { useState } from 'react'
+import { TodoModel } from "./TodoModel"
 
-export type StateArgs = {
-  updateState?: Dispatch<TodoStore>,
-  state: TodoStore
-}
-export type TodoItem = {
-  title: string,
-  completed: boolean,
-  id: number
-}
-export type TodoStore = TodoItem[]
-
-const todoStore: TodoStore = []
+const todoModel = new TodoModel()
 
 const TodoComponent = () => {
 
-  const [todoState, setTodoState] = useState<TodoStore>(todoStore)
+  const [todoModelState, setTodoModelState] = useState<TodoModel>(todoModel)
 
   return (
     <>
       <Header />
-      <TodoInput state={todoState} updateState={setTodoState} />
-      <TodoList state={todoState} updateState={setTodoState} />
+      <TodoInput
+        model={todoModelState}
+        setModel={setTodoModelState} />
+      <TodoList
+        model={todoModelState}
+        setModel={setTodoModelState} />
       <Footer />
     </>
   )

@@ -1,7 +1,7 @@
 import { useCallback } from "react"
-import type { StateArgs } from "./Todo"
+import type { StateArgs } from "./types"
 
-const TodoInputComponent = ({ state, updateState }: StateArgs) => {
+const TodoInputComponent = ({ model, setModel }: StateArgs) => {
 
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -14,14 +14,15 @@ const TodoInputComponent = ({ state, updateState }: StateArgs) => {
     const newTodoItem = {
       title: title,
       completed: false,
-      id: state[state.length - 1]?.id + 1 || 0
+      id: Date.now()
     }
-    const newState = [...state, newTodoItem]
-    updateState?.(newState)
+
+    model.add(newTodoItem)
+    setModel(model)
 
     todoInput.value = ''
 
-  }, [state, updateState]);
+  }, [model, setModel]);
 
   return (
     <>
