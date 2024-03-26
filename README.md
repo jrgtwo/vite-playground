@@ -1,5 +1,9 @@
 # React + TypeScript + Vite
 
+Add new projects to a named components folder
+i.e. /components/Todo
+`npm run dev`
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
