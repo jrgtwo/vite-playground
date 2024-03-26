@@ -28,13 +28,12 @@ export class TodoModel implements TodoModelInterface {
   }
 
   onChange(cb: TodoModelOnChangeCallback) {
-
     this._changeCbList.push(cb)
-
     return this
   }
 
   _triggerOnChange(event: ChangeEvent) {
+    console.log(this._changeCbList)
     this._changeCbList.forEach((cb) => {
       cb(event)
     })
