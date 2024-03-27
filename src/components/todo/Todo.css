@@ -1,0 +1,55 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.todo-list {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.todo-list li {
+  list-style: none;
+  display: block;
+  position: relative;
+}
+
+.todo-list li label {
+  position: relative;
+  padding-left: 45px;
+  cursor: pointer;
+}
+
+
+.todo-list input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.todo-list li .checkmark {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+  background: #ccc;
+  content: '';
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.7);
+}
+
+.todo-list li:hover input~.checkmark {
+  border: 2px solid white;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.7);
+}
+
+.todo-list li input:checked~.checkmark {
+  background-color: #2196F3;
+}

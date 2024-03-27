@@ -26,7 +26,7 @@ const TodoListComponent = ({ model, setModel }: StateArgs) => {
   return (
     <>
       <h4>Your Current Todo's</h4>
-      <ul>
+      <ul className='todo-list'>
         {todos}
       </ul>
     </>

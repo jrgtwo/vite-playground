@@ -3,7 +3,8 @@ import { Footer } from './Footer'
 import { TodoInput } from './TodoInput'
 import { TodoList } from './TodoList'
 import { useState } from 'react'
-import { TodoModel } from "./TodoModel"
+import { TodoModel } from './TodoModel'
+import './Todo.css'
 
 const todoModel = new TodoModel()
 

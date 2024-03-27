@@ -29,9 +29,11 @@ const TodoItemComponent = ({
   return (
     <>
       <li>
-        <p>{title}</p>
-        <label htmlFor="completedTodo">Completed</label>
-        <input name="completedTodo" type="checkbox" checked={completed} onChange={handleComplete} />
+        <label>
+          <input name="completedTodo" type="checkbox" checked={completed} onChange={handleComplete} />
+          {title}
+          <span className='checkmark'></span>
+        </label>
         <button onClick={handleDelete}>Delete</button>
       </li>
     </>
