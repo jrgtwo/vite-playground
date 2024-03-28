@@ -16,15 +16,18 @@ const TodoListComponent = ({ model, setModel }: StateArgs) => {
     }
   }, [model, onChange])
 
-  const todos = data.map(({ title, completed, id }: _TodoItem) =>
-    <TodoItem
-      title={title}
-      completed={completed}
-      id={id}
-      model={model}
-      setModel={setModel}
-      key={id} />
-  )
+  const todos = data.flat().map((item: _TodoItem) => {
+    const { title, completed, id } = item
+    return (
+      <TodoItem
+        title={title}
+        completed={completed}
+        id={id}
+        model={model}
+        setModel={setModel}
+        key={id} />
+    )
+  })
 
   return (
     <>

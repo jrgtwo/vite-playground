@@ -4,9 +4,14 @@ import { TodoInput } from './TodoInput'
 import { TodoList } from './TodoList'
 import { useState } from 'react'
 import { TodoModel } from './TodoModel'
+import { LocalDataStore as _LocalDataStore } from './TodoLocalDataStore'
+
 import './Todo.css'
 
 const todoModel = new TodoModel()
+const LocalDataStore = new _LocalDataStore(todoModel)
+
+todoModel.setInternalStorage(LocalDataStore)
 
 const TodoComponent = () => {
 
