@@ -1,42 +1,36 @@
-import { TodoItem, TodoModelMap } from "./types"
-
-export type ChangeEvent = {
-  action: string
-}
-
-type TodoModelOnChangeCallback = (event: ChangeEvent) => void
-
-export interface TodoModelInterface {
-  _map: TodoModelMap
-  _changeCbList: TodoModelOnChangeCallback[],
-  add: (data: TodoItem) => this,
-  remove: ({ id }: Partial<TodoItem>) => this | false,
-  get: ({ id }: Partial<TodoItem>) => TodoItem[] | false | undefined,
-  getAll: () => TodoItem[]
-  update: (data: TodoItem) => this
-  onChange: (cb: TodoModelOnChangeCallback) => this
-}
-
-
+import type {
+  TodoItem,
+  TodoModelInterface,
+  TodoModelOnChangeCallback,
+  ChangeEvent
+} from "./types"
 
 export class TodoModel implements TodoModelInterface {
   _map
-  _changeCbList: TodoModelOnChangeCallback[]
+  _onChangeCbList: Set<TodoModelOnChangeCallback>
   constructor() {
     this._map = new Map()
-    this._changeCbList = []
+    this._onChangeCbList = new Set()
   }
 
   onChange(cb: TodoModelOnChangeCallback) {
-    this._changeCbList.push(cb)
+    this._onChangeCbList.add(cb)
     return this
   }
 
   _triggerOnChange(event: ChangeEvent) {
-    console.log(this._changeCbList)
-    this._changeCbList.forEach((cb) => {
-      cb(event)
+    this._onChangeCbList.forEach((cb) => {
+      try {
+        cb(event)
+      } catch (err) {
+        console.error('There was an error', err)
+      }
     })
+  }
+
+  off(cb: TodoModelOnChangeCallback) {
+    this._onChangeCbList?.delete(cb)
+    return this
   }
 
   add(data: TodoItem) {
